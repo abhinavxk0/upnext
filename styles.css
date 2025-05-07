@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -698,6 +699,7 @@ textarea:focus {
 .carousel-inner {
   display: flex;
   transition: transform var(--transition-slow);
+  touch-action: pan-y; /* Allow vertical scrolling */
 }
 
 .carousel-slide {
@@ -1072,6 +1074,7 @@ input:checked + .toggle-slider:before {
   padding: var(--space-5);
   color: white;
   justify-content: flex-end; /* Keep this for the h1 alignment */
+  box-shadow: var(--shadow-lg);
 }
 
 #back-btn {
@@ -2117,7 +2120,7 @@ input:checked + .toggle-slider:before {
 .profile-topcard {
   background: var(--background);
     padding-bottom: 25px;
-    border-radius: 15px;
+    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
 }
 
@@ -2237,4 +2240,24 @@ button {
 
 #request-permission{
   margin-top: 10px;
+}
+
+.event-actions-eventjs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  width: 100%;
+}
+
+.left-actions-eventjs {
+  display: flex;
+  align-items: center;
+}
+
+.right-actions-eventjs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }

@@ -65,13 +65,17 @@ function renderEventDetails() {
                 </div>
             </div>
             
-            <div class="event-actions">
-                <button class="btn btn-primary" id="add-to-calendar" aria-label="Add ${event.title} to calendar">Add to Calendar</button>
-                <div class="notify-badge ${appState.userPreferences.savedEvents.includes(event.id) ? 'active' : ''}" id="notify-btn" title="Get notified" role="button" aria-label="Toggle notification for ${event.title}">
-                    <i class="fas fa-bell"></i>
+            <div class="event-actions-eventjs">
+                <div class="left-actions-eventjs">
+                    <button class="btn btn-primary" id="add-to-calendar" aria-label="Add ${event.title} to calendar"><i class="fa-brands fa-google"></i>Add to Calendar</button>
                 </div>
-                <div class="save-badge ${appState.userPreferences.savedEvents.includes(event.id) ? 'active' : ''}" id="save-btn" title="Save event" role="button" aria-label="Toggle save for ${event.title}">
-                    <i class="fas fa-bookmark"></i>
+                <div class="right-actions-eventjs">
+                    <div class="notify-badge ${appState.userPreferences.savedEvents.includes(event.id) ? 'active' : ''}" id="notify-btn" title="Get notified" role="button" aria-label="Toggle notification for ${event.title}">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="save-badge ${appState.userPreferences.savedEvents.includes(event.id) ? 'active' : ''}" id="save-btn" title="Save event" role="button" aria-label="Toggle save for ${event.title}">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
                 </div>
             </div>
             

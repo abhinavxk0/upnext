@@ -69,15 +69,17 @@ function setupCarousel() {
     let currentSlide = 0;
     let autoSlideInterval;
     let startX = 0;
+    let startY = 0;
     let isSwiping = false;
-    const swipeThreshold = 50; // Minimum distance in pixels to trigger a swipe
+    const swipeThreshold = 50; // Minimum distance in pixels to trigger a slide change
+    const directionThreshold = 20; // Minimum distance to detect swipe direction
 
     // Add grab cursor style
     carousel.style.cursor = 'grab';
     carousel.addEventListener('mousedown', () => carousel.style.cursor = 'grabbing');
     carousel.addEventListener('mouseup', () => carousel.style.cursor = 'grab');
 
-    function showSlide(index) {
+    function showSlide(index, useTransition = true) {
         const slides = carousel.querySelectorAll('.carousel-slide');
         if (index >= slides.length) {
             currentSlide = 0;
@@ -87,6 +89,7 @@ function setupCarousel() {
             currentSlide = index;
         }
 
+        carousel.style.transition = useTransition ? 'transform 0.35s ease' : 'none';
         carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
 
         dots.forEach((dot, i) => {
@@ -114,14 +117,20 @@ function setupCarousel() {
     // Swipe functionality for pointer events
     carousel.addEventListener('pointerdown', (e) => {
         startX = e.clientX;
+        startY = e.clientY;
         isSwiping = true;
         carousel.style.cursor = 'grabbing';
+        carousel.style.transition = 'none'; // Disable transition during drag
         clearInterval(autoSlideInterval);
     });
 
     carousel.addEventListener('pointermove', (e) => {
         if (!isSwiping) return;
-        e.preventDefault(); // Prevent text selection during swipe
+        const currentX = e.clientX;
+        const deltaX = currentX - startX;
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const percentage = (deltaX / carousel.offsetWidth) * 100;
+        carousel.style.transform = `translateX(calc(-${currentSlide * 100}% + ${percentage}px))`;
     });
 
     carousel.addEventListener('pointerup', (e) => {
@@ -137,6 +146,8 @@ function setupCarousel() {
             } else {
                 showSlide(currentSlide + 1); // Swipe left, go to next slide
             }
+        } else {
+            showSlide(currentSlide); // Snap back to current slide
         }
         resetAutoSlide();
     });
@@ -145,6 +156,7 @@ function setupCarousel() {
         if (isSwiping) {
             isSwiping = false;
             carousel.style.cursor = 'grab';
+            showSlide(currentSlide);
             resetAutoSlide();
         }
     });
@@ -152,13 +164,26 @@ function setupCarousel() {
     // Swipe functionality for touch events
     carousel.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
         isSwiping = true;
+        carousel.style.transition = 'none'; // Disable transition during drag
         clearInterval(autoSlideInterval);
     });
 
     carousel.addEventListener('touchmove', (e) => {
         if (!isSwiping) return;
-        e.preventDefault(); // Prevent scrolling during swipe
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const deltaX = currentX - startX;
+        const deltaY = currentY - startY;
+
+        // Determine if the gesture is primarily horizontal
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > directionThreshold) {
+            e.preventDefault(); // Prevent default for horizontal swipes
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const percentage = (deltaX / carousel.offsetWidth) * 100;
+            carousel.style.transform = `translateX(calc(-${currentSlide * 100}% + ${percentage}px))`;
+        }
     });
 
     carousel.addEventListener('touchend', (e) => {
@@ -173,6 +198,8 @@ function setupCarousel() {
             } else {
                 showSlide(currentSlide + 1); // Swipe left, go to next slide
             }
+        } else {
+            showSlide(currentSlide); // Snap back to current slide
         }
         resetAutoSlide();
     });
