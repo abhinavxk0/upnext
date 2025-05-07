@@ -8,12 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderProfile() {
     const savedEvents = eventsData.filter(event => appState.userPreferences.savedEvents.includes(event.id));
 
-    const notificationsToggle = document.getElementById('notifications-toggle');
-    notificationsToggle.checked = appState.userPreferences.notifications;
-
-    const notificationTiming = document.getElementById('notification-timing');
-    notificationTiming.value = appState.userPreferences.notificationTiming;
-
     document.querySelectorAll('.interest-item input').forEach(checkbox => {
         const interest = checkbox.id.replace('interest-', '');
         checkbox.checked = appState.userPreferences.interests.includes(interest);
@@ -21,12 +15,14 @@ function renderProfile() {
 
     const savedEventsContainer = document.getElementById('saved-events');
     savedEventsContainer.innerHTML = savedEvents.length > 0 ? savedEvents.map(event => `
-        <div class="card">
-            <div class="card-content">
-                <h3 class="card-title">${event.title}</h3>
-                <p class="card-subtitle">${formatDate(event.date)} • ${formatTime(event.time)}</p>
-                <button class="btn btn-primary" data-event-id="${event.id}" aria-label="View details for ${event.title}">View Details</button>
-                <button class="btn btn-outline" data-event-id="${event.id}" style="margin-top: 8px;" aria-label="Remove ${event.title} from saved events">Remove</button>
+        <div class="card" style="background-image: url('${event.image}'); background-size: cover; background-position: center; backdrop-filter: blur(1000px);">
+            <div class="card-content" style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%; background: rgba(0, 0, 0, 0.5);">
+                <h3 class="card-title" style="font-size: 1.25rem; margin-bottom: var(--space-2);">${event.title}</h3>
+                <p class="card-subtitle" style="font-size: 0.9375rem; margin-bottom: var(--space-3);">${formatDate(event.date)} • ${formatTime(event.time)}</p>
+                <div style="display: flex; gap: var(--space-2);">
+                    <button class="btn btn-primary" data-event-id="${event.id}" aria-label="View for ${event.title}" style="font-size: 0.875rem;">View</button>
+                    <button class="btn btn-outline" data-event-id="${event.id}" aria-label="Remove ${event.title} from saved events" style="font-size: 0.875rem;">Remove</button>
+                </div>
             </div>
         </div>
     `).join('') : '<p>No saved events.</p>';
@@ -64,36 +60,6 @@ function renderProfile() {
         });
     });
 
-    notificationsToggle.addEventListener('change', (e) => {
-        appState.userPreferences.notifications = e.target.checked;
-        saveUserPreferences();
-        if (e.target.checked) {
-            checkNotificationPermission();
-        } else {
-            const scheduledNotifications = JSON.parse(sessionStorage.getItem('scheduledNotifications') || '{}');
-            Object.values(scheduledNotifications).forEach(timeoutId => clearTimeout(timeoutId));
-            sessionStorage.setItem('scheduledNotifications', '{}');
-        }
-    });
-
-    notificationTiming.addEventListener('change', (e) => {
-        appState.userPreferences.notificationTiming = e.target.value;
-        saveUserPreferences();
-
-        // Reschedule notifications
-        const savedEvents = appState.userPreferences.savedEvents;
-        const scheduledNotifications = JSON.parse(sessionStorage.getItem('scheduledNotifications') || '{}');
-        Object.values(scheduledNotifications).forEach(timeoutId => clearTimeout(timeoutId));
-        sessionStorage.setItem('scheduledNotifications', '{}');
-
-        savedEvents.forEach(eventId => {
-            const event = eventsData.find(e => e.id === eventId);
-            if (event) {
-                scheduleNotification(event);
-            }
-        });
-    });
-
     clearSavedBtn.addEventListener('click', () => {
         appState.userPreferences.savedEvents = [];
         saveUserPreferences();
@@ -102,7 +68,7 @@ function renderProfile() {
 
     document.querySelectorAll('.saved-events .btn').forEach(btn => {
         const eventId = parseInt(btn.getAttribute('data-event-id'));
-        if (btn.textContent === 'View Details') {
+        if (btn.textContent === 'View') {
             btn.addEventListener('click', () => {
                 window.location.href = `event.html?id=${eventId}`;
             });
@@ -114,3 +80,5 @@ function renderProfile() {
         }
     });
 }
+
+const navbar_profile = document.getElementById('');

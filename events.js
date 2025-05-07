@@ -24,7 +24,7 @@ function renderEvents() {
     document.getElementById('events-search').value = filters.search;
 
     const locationFilter = document.getElementById('location-filter');
-    locationFilter.innerHTML = `<option value="">All Locations</option>` + 
+    locationFilter.innerHTML = `<option value="">All Locations</option>` +
         [...new Set(eventsData.map(event => event.location))].map(location => `
             <option value="${location}" ${filters.location === location ? 'selected' : ''}>${location}</option>
         `).join('');
@@ -48,14 +48,18 @@ function renderEvents() {
                 <p class="card-subtitle">${formatDate(event.date)} • ${formatTime(event.time)}</p>
                 <p class="card-subtitle">${event.location}</p>
                 <div class="card-actions">
-                    <button class="btn btn-primary" data-event-id="${event.id}" aria-label="View details for ${event.title}">View Details</button>
-                    <div class="notify-badge ${appState.userPreferences.savedEvents.includes(event.id) ? 'active' : ''}" data-event-id="${event.id}" title="Get notified" role="button" aria-label="Toggle notification for ${event.title}">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <div class="save-badge ${appState.userPreferences.savedEvents.includes(event.id) ? 'active' : ''}" data-event-id="${event.id}" title="Save event" role="button" aria-label="Toggle save for ${event.title}">
-                        <i class="fas fa-bookmark"></i>
-                    </div>
-                </div>
+    <div class="left-actions">
+        <button class="btn btn-primary" data-event-id="${event.id}" aria-label="View for ${event.title}">View</button>
+    </div>
+    <div class="right-actions">
+        <div class="notify-badge ${appState.userPreferences.savedEvents.includes(event.id) ? 'active' : ''}" data-event-id="${event.id}" title="Get notified" role="button" aria-label="Toggle notification for ${event.title}">
+            <i class="fas fa-bell"></i>
+        </div>
+        <div class="save-badge ${appState.userPreferences.savedEvents.includes(event.id) ? 'active' : ''}" data-event-id="${event.id}" title="Save event" role="button" aria-label="Toggle save for ${event.title}">
+            <i class="fas fa-bookmark"></i>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     `).join('') : `

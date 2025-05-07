@@ -17,7 +17,7 @@ function renderHome() {
                 <div class="card-content">
                     <h3 class="card-title">${event.title}</h3>
                     <p class="card-subtitle">${formatDate(event.date)} • ${formatTime(event.time)}</p>
-                    <button class="btn btn-primary" data-event-id="${event.id}" aria-label="View details for ${event.title}">View Details</button>
+                    <button class="btn btn-primary" data-event-id="${event.id}" aria-label="View for ${event.title}">View</button>
                 </div>
             </div>
         </div>
@@ -101,3 +101,4 @@ function setupCarousel() {
     carousel.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
     carousel.addEventListener('mouseleave', resetAutoSlide);
 }
+

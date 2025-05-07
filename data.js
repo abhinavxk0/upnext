@@ -8,7 +8,7 @@ const eventsData = [
         time: "19:00",
         location: "School Stadium",
         category: "Sports",
-        image: "https://placehold.co/600x400?text=Varsity+Football+Game",
+        image: "https://a2.espncdn.com/combiner/i?img=%2Fphoto%2F2024%2F1020%2Fr1403332_1296x729_16%2D9.jpg",
         organizer: "Athletics Department",
         contact: "athletics@school.edu"
     },

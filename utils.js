@@ -260,3 +260,11 @@ function setupSidebar() {
         }
     }
 }
+
+// Toggle sidebar collapse
+const sidebar = document.getElementById('new-sidebar');
+const toggleBtn = document.getElementById('new-toggleBtn');
+
+toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('new-collapsed');
+});

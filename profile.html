@@ -1,131 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upnext - Profile</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <!-- Desktop sidebar navigation -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h1 class="logo">Upnext</h1>
-            <button id="sidebar-toggle" aria-label="Toggle sidebar">
-                <i class="fas fa-chevron-left"></i>
-            </button>
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        background: rgba(17, 24, 39, 1);
+        background: linear-gradient(
+          180deg,
+          rgba(17, 24, 39, 1) 0%,
+          rgb(31, 51, 73) 100%
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <div class="new-sidebar" id="new-sidebar">
+        <div class="new-sidebar-header">
+          <div class="new-logo-container">
+            <img src="/logo.png" alt="Hackathon Logo" class="new-logo-img" />
+          </div>
+          <button class="new-toggle-btn" id="new-toggleBtn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
         </div>
-        <nav class="sidebar-nav">
-            <a href="index.html" class="nav-item" data-route="home">
+  
+        <ul class="new-nav-list">
+          <li class="new-nav-item" id="home-nav-item">
+            <a href="/index.html" class="new-nav-link" data-route="home">
+              <span class="new-nav-icon">
                 <i class="fas fa-home"></i>
-                <span>Home</span>
+              </span>
+              <span class="new-nav-text">Home</span>
             </a>
-            <a href="events.html" class="nav-item" data-route="events">
+          </li>
+          <li class="new-nav-item" id="events-nav-item">
+            <a href="/events.html" class="new-nav-link" data-route="events">
+              <span class="new-nav-icon">
                 <i class="fas fa-calendar-alt"></i>
-                <span>Events</span>
+              </span>
+              <span class="new-nav-text">Events</span>
             </a>
-            <a href="profile.html" class="nav-item active" data-route="profile">
+          </li>
+          <li class="new-nav-item" id="profile-nav-item">
+            <a
+              href="/profile.html"
+              class="new-nav-link new-active"
+              data-route="profile"
+            >
+              <span class="new-nav-icon">
                 <i class="fas fa-user"></i>
-                <span>Profile</span>
+              </span>
+              <span class="new-nav-text">Profile</span>
             </a>
-        </nav>
-    </aside>
-
+          </li>
+        </ul>
+      </div>
     <!-- Mobile bottom navigation -->
     <nav class="bottom-nav" id="bottom-nav">
-        <a href="events.html" class="nav-item" data-route="events">
-            <i class="fas fa-calendar-alt"></i>
-            <span>Events</span>
-        </a>
-        <a href="index.html" class="nav-item" data-route="home">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="profile.html" class="nav-item active" data-route="profile">
-            <i class="fas fa-user"></i>
-            <span>Profile</span>
-        </a>
+      <a href="/events.html" class="nav-item" data-route="events">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Events</span>
+      </a>
+      <a href="/index.html" class="nav-item" data-route="home">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="/profile.html" class="nav-item active" data-route="profile">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
     </nav>
 
     <!-- Main content -->
     <div class="container">
+      <div class="profile-topcard">
+        <div class="profile-topcontrols">
+          <button class="btn btn-outline" id="logout-btn" aria-label="Log out">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+          <a href="/settings.html">
+            <button
+              class="btn btn-outline settings-btn"
+              id="settings-btn"
+              aria-label="Settings"
+            >
+              <i class="fa-solid fa-gear"></i>
+            </button>
+          </a>
+        </div>
         <div class="profile-header">
-            <h1>Your Profile</h1>
-            <button class="btn btn-outline" id="logout-btn" aria-label="Log out">Logout</button>
+          <img
+            src="https://placehold.co/600x600?text=A"
+            alt=""
+            class="profile-image"
+          />
         </div>
-        
-        <div class="profile-section">
-            <h2>Account</h2>
-            <p><strong>Username:</strong> Student</p>
-            <p><strong>Email:</strong> student@school.edu</p>
-        </div>
-        
-        <div class="profile-section">
-            <h2>Interests</h2>
-            <p>Select your interests to see relevant events:</p>
-            <div class="interests-grid">
-                <div class="interest-item">
-                    <input type="checkbox" id="interest-sports" aria-label="Sports interest">
-                    <label for="interest-sports">Sports</label>
-                </div>
-                <div class="interest-item">
-                    <input type="checkbox" id="interest-arts" aria-label="Arts interest">
-                    <label for="interest-arts">Arts</label>
-                </div>
-                <div class="interest-item">
-                    <input type="checkbox" id="interest-music" aria-label="Music interest">
-                    <label for="interest-music">Music</label>
-                </div>
-                <div class="interest-item">
-                    <input type="checkbox" id="interest-academics" aria-label="Academics interest">
-                    <label for="interest-academics">Academics</label>
-                </div>
-                <div class="interest-item">
-                    <input type="checkbox" id="interest-clubs" aria-label="Clubs interest">
-                    <label for="interest-clubs">Clubs</label>
-                </div>
-                <div class="interest-item">
-                    <input type="checkbox" id="interest-social" aria-label="Social interest">
-                    <label for="interest-social">Social</label>
-                </div>
+        <div class="profile-header-text">Abhinav Xavier Kujur</div>
+        <div class="profile-header-h2">Class 12</div>
+        <div class="profile-header-h3">Don Bosco School, Park Circus</div>
+      </div>
+      <div class="profile-container">
+        <!-- <div class="profile-section">
+          <h2>Account</h2>
+          <p><strong>Username:</strong> Student</p>
+          <p><strong>Email:</strong> student@school.edu</p>
+        </div> -->
+
+        <!-- <div class="profile-section">
+          <h2>Interests</h2>
+          <p>Select your interests to see relevant events:</p>
+          <div class="interests-grid">
+            <div class="interest-item">
+              <input
+                type="checkbox"
+                id="interest-sports"
+                aria-label="Sports interest"
+              />
+              <label for="interest-sports">Sports</label>
             </div>
-        </div>
-        
-        <div class="profile-section">
-            <h2>Notification Settings</h2>
+            <div class="interest-item">
+              <input
+                type="checkbox"
+                id="interest-arts"
+                aria-label="Arts interest"
+              />
+              <label for="interest-arts">Arts</label>
+            </div>
+            <div class="interest-item">
+              <input
+                type="checkbox"
+                id="interest-music"
+                aria-label="Music interest"
+              />
+              <label for="interest-music">Music</label>
+            </div>
+            <div class="interest-item">
+              <input
+                type="checkbox"
+                id="interest-academics"
+                aria-label="Academics interest"
+              />
+              <label for="interest-academics">Academics</label>
+            </div>
+            <div class="interest-item">
+              <input
+                type="checkbox"
+                id="interest-clubs"
+                aria-label="Clubs interest"
+              />
+              <label for="interest-clubs">Clubs</label>
+            </div>
+            <div class="interest-item">
+              <input
+                type="checkbox"
+                id="interest-social"
+                aria-label="Social interest"
+              />
+              <label for="interest-social">Social</label>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- <div class="profile-section">
+          <h2>Notification Settings</h2>
+          <div class="form-group">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 16px;
+              "
+            >
+              <label for="notifications-toggle">Enable Notifications</label>
+              <div class="toggle-switch">
+                <input
+                  type="checkbox"
+                  id="notifications-toggle"
+                  aria-label="Toggle notifications"
+                />
+                <span class="toggle-slider"></span>
+              </div>
+            </div>
             <div class="form-group">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                    <label for="notifications-toggle">Enable Notifications</label>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="notifications-toggle" aria-label="Toggle notifications">
-                        <span class="toggle-slider"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="notification-timing">Notify Me</label>
-                    <select id="notification-timing" aria-label="Notification timing">
-                        <option value="24">1 day before</option>
-                        <option value="1">1 hour before</option>
-                        <option value="0.5">30 minutes before</option>
-                    </select>
-                </div>
+              <label for="notification-timing">Notify Me</label>
+              <select id="notification-timing" aria-label="Notification timing">
+                <option value="24">1 day before</option>
+                <option value="1">1 hour before</option>
+                <option value="0.5">30 minutes before</option>
+              </select>
             </div>
-        </div>
-        
+          </div>
+        </div> -->
+
         <div class="profile-section">
-            <h2>Saved Events</h2>
-            <button class="btn btn-outline" id="clear-saved-btn" style="margin-bottom: 16px;" aria-label="Clear all saved events">Clear All</button>
-            <div class="saved-events" id="saved-events">
-                <!-- Populated by profile.js -->
-            </div>
+          <h2 class="section-title" style="font-size: 1.4rem">Saved Events</h2>
+
+          <div class="saved-events" id="saved-events">
+            <!-- Populated by profile.js -->
+          </div>
+          <div class="clearallsavedevents">
+            <button
+              class="btn btn-outline"
+              id="clear-saved-btn"
+              style="margin-bottom: 16px"
+              aria-label="Clear all saved events"
+            >
+              Clear All
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Scripts -->
-    <script src="data.js"></script>
-    <script src="utils.js"></script>
-    <script src="profile.js"></script>
-</body>
+    <script src="/data.js"></script>
+    <script src="/utils.js"></script>
+    <script src="/profile.js"></script>
+  </body>
 </html>
