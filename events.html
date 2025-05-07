@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upnext - Events</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" >   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body{
@@ -86,7 +87,7 @@
                     <button class="modal-close" id="modal-close-btn" aria-label="Close filter modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="form-group" style="display: block;">
                         <label for="category-filter">Category</label>
                         <select id="category-filter" aria-label="Filter by category">
                             <option value="">All Categories</option>
@@ -98,7 +99,7 @@
                             <option value="Social">Social</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"style="display: block;">
                         <label for="date-filter">Date Range</label>
                         <select id="date-filter" aria-label="Filter by date range">
                             <option value="">All Dates</option>
@@ -106,14 +107,14 @@
                             <option value="week">This Week</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"style="display: block;">
                         <label for="location-filter">Location</label>
                         <select id="location-filter" aria-label="Filter by location">
                             <option value="">All Locations</option>
                             <!-- Populated by events.js -->
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"style="display: block;">
                         <label for="sort-by">Sort By</label>
                         <select id="sort-by" aria-label="Sort events">
                             <option value="date">Sort by Date</option>

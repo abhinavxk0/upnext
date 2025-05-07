@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upnext - Sign Up</title>
     <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" >
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -113,10 +114,10 @@
     <div class="signup-container">
       <div class="signup-header">
         <img src="/logo.png" alt="Upnext Logo" />
-        <h1>Welcome!</h1>
+        <h1>Register</h1>
       </div>
       <form id="signup-form">
-        <div class="form-group">
+        <div class="form-group" style="display: block;">
           <label for="full-name">Full Name</label>
           <div class="input-icon">
             <i class="fas fa-user"></i>
@@ -130,7 +131,28 @@
             />
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" style="display: block;">
+            <label for="school">School</label>
+            <select id="school" name="school" required aria-label="School">
+              <option value="" disabled selected>Select your school</option>
+              <option value="St. Xavier's Collegiate School">St. Xavier's Collegiate School</option>
+              <option value="Loreto House, Kolkata">Loreto House, Kolkata</option>
+              <option value="La Martiniere for Boys">La Martiniere for Boys</option>
+              <option value="La Martiniere for Girls">La Martiniere for Girls</option>
+              <option value="Modern High School for Girls">Modern High School for Girls</option>
+              <option value="Don Bosco School, Park Circus">Don Bosco School, Park Circus</option>
+              <option value="St. James' School">St. James' School</option>
+              <option value="The Heritage School, Kolkata">The Heritage School, Kolkata</option>
+              <option value="Sri Sri Academy">Sri Sri Academy</option>
+              <option value="G.D. Birla Centre for Education">G.D. Birla Centre for Education</option>
+              <option value="Calcutta Boys' School">Calcutta Boys' School</option>
+              <option value="Mahadevi Birla Shishu Vihar">Mahadevi Birla Shishu Vihar</option>
+              <option value="National Gems Higher Secondary School">National Gems Higher Secondary School</option>
+              <option value="South City International School">South City International School</option>
+              <option value="Adamas International School">Adamas International School</option>
+            </select>
+          </div>
+        <div class="form-group" style="display: block;">
           <label for="class">Class</label>
           <select id="class" name="class" required aria-label="Class">
             <option value="" disabled selected>Select your class</option>
@@ -148,28 +170,7 @@
             <option value="12">Class 12</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="school">School</label>
-          <select id="school" name="school" required aria-label="School">
-            <option value="" disabled selected>Select your school</option>
-            <option value="St. Xavier's Collegiate School">St. Xavier's Collegiate School</option>
-            <option value="Loreto House, Kolkata">Loreto House, Kolkata</option>
-            <option value="La Martiniere for Boys">La Martiniere for Boys</option>
-            <option value="La Martiniere for Girls">La Martiniere for Girls</option>
-            <option value="Modern High School for Girls">Modern High School for Girls</option>
-            <option value="Don Bosco School, Park Circus">Don Bosco School, Park Circus</option>
-            <option value="St. James' School">St. James' School</option>
-            <option value="The Heritage School, Kolkata">The Heritage School, Kolkata</option>
-            <option value="Sri Sri Academy">Sri Sri Academy</option>
-            <option value="G.D. Birla Centre for Education">G.D. Birla Centre for Education</option>
-            <option value="Calcutta Boys' School">Calcutta Boys' School</option>
-            <option value="Mahadevi Birla Shishu Vihar">Mahadevi Birla Shishu Vihar</option>
-            <option value="National Gems Higher Secondary School">National Gems Higher Secondary School</option>
-            <option value="South City International School">South City International School</option>
-            <option value="Adamas International School">Adamas International School</option>
-          </select>
-        </div>
-        <div class="form-group">
+        <div class="form-group" style="display: block;">
           <label for="email">Email</label>
           <div class="input-icon">
             <i class="fas fa-envelope"></i>
@@ -183,7 +184,7 @@
             />
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" style="display: block;">
           <label for="password">Password</label>
           <div class="input-icon">
             <i class="fas fa-lock"></i>
@@ -217,33 +218,13 @@
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        // Create user data object
-        const userData = {
-          fullName,
-          class: classValue,
-          school,
-          email,
-          password
-        };
-
-        // Convert to JSON
-        const jsonData = JSON.stringify(userData, null, 2);
-
-        // Create a downloadable JSON file
-        const blob = new Blob([jsonData], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'user.json';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-
-        console.log('User data saved to user.json:', userData);
-
-        // Redirect to profile page
-        window.location.href = '/profile.html';
+        // Check if all fields are filled
+        if (fullName && classValue && school && email && password) {
+          // Redirect to profile page
+          window.location.href = '/profile.html';
+        } else {
+          alert('Please fill in all fields');
+        }
       });
     </script>
   </body>
