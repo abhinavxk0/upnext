@@ -77,7 +77,7 @@ function renderEventDetails() {
             
             ${relatedEvents.length > 0 ? `
                 <div class="related-events">
-                    <h2 class="section-title">Related Events</h2>
+                    <h2 class="section-title">More Events</h2>
                     <div class="related-events-scroll">
                         ${relatedEvents.map(related => `
                             <div class="card">
