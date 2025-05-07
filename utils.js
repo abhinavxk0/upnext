@@ -75,33 +75,25 @@ function cancelNotification(eventId) {
     }
 }
 
-// Download calendar file (.ics)
+// Add event to Google Calendar
 function addToCalendar(event) {
-    const start = `${event.date}T${event.time}:00`;
-    const end = new Date(`${event.date}T${event.time}`);
-    end.setHours(end.getHours() + 2);
-    const endStr = end.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    const startDate = new Date(`${event.date}T${event.time}`);
+    const endDate = new Date(startDate);
+    endDate.setHours(endDate.getHours() + 2); // Assume 2-hour duration
 
-    const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-CALSCALE:GREGORIAN
-BEGIN:VEVENT
-SUMMARY:${event.title}
-DTSTART:${start.replace(/[-:]/g, '')}
-DTEND:${endStr}
-LOCATION:${event.location}
-DESCRIPTION:${event.description}
-END:VEVENT
-END:VCALENDAR`;
+    // Format dates to YYYYMMDDTHHMMSSZ
+    const formatDate = (date) => {
+        return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    };
 
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${event.title.replace(/\s+/g, '-')}.ics`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE` +
+        `&text=${encodeURIComponent(event.title)}` +
+        `&dates=${formatDate(startDate)}/${formatDate(endDate)}` +
+        `&details=${encodeURIComponent(event.description)}` +
+        `&location=${encodeURIComponent(event.location)}` +
+        `&sf=true&output=xml`;
+
+    window.open(googleCalendarUrl, '_blank');
 }
 
 // Toggle event notification
@@ -111,7 +103,7 @@ function toggleEventNotification(eventId) {
 
     if (index === -1) {
         savedEvents.push(eventId);
-        saveOAuthPreferences();
+        saveUserPreferences();
 
         const event = eventsData.find(e => e.id === eventId);
         if (event) {

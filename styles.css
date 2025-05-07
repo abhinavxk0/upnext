@@ -81,6 +81,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   display: flex;
+  -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 h1,
@@ -1033,13 +1037,20 @@ input:checked + .toggle-slider:before {
   height: 300px;
   overflow: hidden;
   margin-bottom: var(--space-5);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
 }
 
 .event-header img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.event-details{
+  margin-left: var(--space-4);
+  margin-right: var(--space-4);
+  padding-bottom: 60px;
 }
 
 .event-header-overlay {
@@ -1059,6 +1070,19 @@ input:checked + .toggle-slider:before {
   justify-content: flex-end;
   padding: var(--space-5);
   color: white;
+  justify-content: flex-end; /* Keep this for the h1 alignment */
+}
+
+#back-btn {
+  position: absolute; /* Position the button absolutely within the overlay */
+  top: var(--space-3); /* Adjust distance from top */
+  right: var(--space-3); /* Adjust distance from right */
+  align-self: unset; /* Override align-self: flex-start */
+  background-color: white;
+}
+
+#back-btn:hover {
+  color: var(--primary);
 }
 
 .event-header-overlay h1 {
@@ -1118,48 +1142,6 @@ input:checked + .toggle-slider:before {
   min-width: 240px;
   max-width: 240px;
   scroll-snap-align: start;
-}
-
-/* Modern Loading State */
-.loading {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.loader {
-  width: 48px;
-  height: 48px;
-  border: 3px solid var(--border);
-  border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-  margin-bottom: var(--space-4);
-}
-
-.loader::after {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  background: var(--primary);
-  width: 12px;
-  height: 12px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 /* Notification Badge */
@@ -2199,7 +2181,7 @@ button {
 }
 
 .schoolnamesmall{
-  font-style: bold;
+  font-weight: 700;
 }
 
 .settings-container {
@@ -2250,4 +2232,8 @@ button {
 }
 .form-group label, .form-group input {
   margin: 0;
+}
+
+#request-permission{
+  margin-top: 10px;
 }

@@ -22,69 +22,66 @@
   </head>
   <body>
     <div class="new-sidebar" id="new-sidebar">
-        <div class="new-sidebar-header">
+      <div class="new-sidebar-header">
           <div class="new-logo-container">
-            <img src="/logo.png" alt="Hackathon Logo" class="new-logo-img" />
+              <img src="/logo.png" alt="Upnext Logo" class="new-logo-img" />
           </div>
           <button class="new-toggle-btn" id="new-toggleBtn">
-            <i class="fas fa-chevron-left"></i>
+              <i class="fas fa-chevron-left"></i>
           </button>
-        </div>
-  
-        <ul class="new-nav-list">
+      </div>
+      <ul class="new-nav-list">
           <li class="new-nav-item" id="home-nav-item">
-            <a href="/index.html" class="new-nav-link" data-route="home">
-              <span class="new-nav-icon">
-                <i class="fas fa-home"></i>
-              </span>
-              <span class="new-nav-text">Home</span>
-            </a>
+              <a href="/index.html" class="new-nav-link" data-route="home">
+                  <span class="new-nav-icon"><i class="fas fa-home"></i></span>
+                  <span class="new-nav-text">Home</span>
+              </a>
           </li>
           <li class="new-nav-item" id="events-nav-item">
-            <a href="/events.html" class="new-nav-link" data-route="events">
-              <span class="new-nav-icon">
-                <i class="fas fa-calendar-alt"></i>
-              </span>
-              <span class="new-nav-text">Events</span>
-            </a>
+              <a href="/events.html" class="new-nav-link" data-route="events">
+                  <span class="new-nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                  <span class="new-nav-text">Explore</span>
+              </a>
+          </li>
+          <li class="new-nav-item" id="flash-nav-item">
+              <a href="/flash.html" class="new-nav-link" data-route="flash">
+                  <span class="new-nav-icon"><i class="fas fa-bolt"></i></span>
+                  <span class="new-nav-text">Flash</span>
+              </a>
           </li>
           <li class="new-nav-item" id="profile-nav-item">
-            <a
-              href="/profile.html"
-              class="new-nav-link new-active"
-              data-route="profile"
-            >
-              <span class="new-nav-icon">
-                <i class="fas fa-user"></i>
-              </span>
-              <span class="new-nav-text">Profile</span>
-            </a>
+              <a href="/profile.html" class="new-nav-link new-active" data-route="profile">
+                  <span class="new-nav-icon"><i class="fas fa-user"></i></span>
+                  <span class="new-nav-text">Profile</span>
+              </a>
           </li>
-        </ul>
-      </div>
-    <!-- Mobile bottom navigation -->
-    <nav class="bottom-nav" id="bottom-nav">
-      <a href="/events.html" class="nav-item" data-route="events">
-        <i class="fas fa-calendar-alt"></i>
-        <span>Events</span>
-      </a>
+      </ul>
+  </div>
+
+  <nav class="bottom-nav" id="bottom-nav">
       <a href="/index.html" class="nav-item" data-route="home">
-        <i class="fas fa-home"></i>
-        <span>Home</span>
+          <i class="fas fa-home"></i><span>Home</span>
+      </a>
+      <a href="/events.html" class="nav-item" data-route="events">
+          <i class="fa-solid fa-magnifying-glass"></i><span>Explore</span>
+      </a>
+      <a href="/flash.html" class="nav-item" data-route="flash">
+          <i class="fas fa-bolt"></i><span>Flash</span>
       </a>
       <a href="/profile.html" class="nav-item active" data-route="profile">
-        <i class="fas fa-user"></i>
-        <span>Profile</span>
+          <i class="fas fa-user"></i><span>Profile</span>
       </a>
-    </nav>
+  </nav>
 
     <!-- Main content -->
     <div class="container">
       <div class="profile-topcard">
         <div class="profile-topcontrols">
-          <button class="btn btn-outline" id="logout-btn" aria-label="Log out">
-            <i class="fa-solid fa-right-from-bracket"></i>
-          </button>
+          <a href="/login.html">
+            <button class="btn btn-outline" id="logout-btn" aria-label="Log out">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+          </a>
           <a href="/settings.html">
             <button
               class="btn btn-outline settings-btn"

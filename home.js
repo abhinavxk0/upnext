@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if this is the user's first visit
+    if (!localStorage.getItem('hasVisited')) {
+        localStorage.setItem('hasVisited', 'true'); // Mark as visited
+        window.location.href = '/login.html'; // Redirect to login
+        return; // Exit to prevent further execution
+    }
+
     loadUserPreferences();
     setupSidebar();
     checkNotificationPermission();
@@ -61,6 +68,14 @@ function setupCarousel() {
 
     let currentSlide = 0;
     let autoSlideInterval;
+    let startX = 0;
+    let isSwiping = false;
+    const swipeThreshold = 50; // Minimum distance in pixels to trigger a swipe
+
+    // Add grab cursor style
+    carousel.style.cursor = 'grab';
+    carousel.addEventListener('mousedown', () => carousel.style.cursor = 'grabbing');
+    carousel.addEventListener('mouseup', () => carousel.style.cursor = 'grab');
 
     function showSlide(index) {
         const slides = carousel.querySelectorAll('.carousel-slide');
@@ -96,9 +111,74 @@ function setupCarousel() {
         autoSlideInterval = setInterval(autoSlide, 5000);
     }
 
+    // Swipe functionality for pointer events
+    carousel.addEventListener('pointerdown', (e) => {
+        startX = e.clientX;
+        isSwiping = true;
+        carousel.style.cursor = 'grabbing';
+        clearInterval(autoSlideInterval);
+    });
+
+    carousel.addEventListener('pointermove', (e) => {
+        if (!isSwiping) return;
+        e.preventDefault(); // Prevent text selection during swipe
+    });
+
+    carousel.addEventListener('pointerup', (e) => {
+        if (!isSwiping) return;
+        isSwiping = false;
+        carousel.style.cursor = 'grab';
+        const endX = e.clientX;
+        const deltaX = endX - startX;
+
+        if (Math.abs(deltaX) > swipeThreshold) {
+            if (deltaX > 0) {
+                showSlide(currentSlide - 1); // Swipe right, go to previous slide
+            } else {
+                showSlide(currentSlide + 1); // Swipe left, go to next slide
+            }
+        }
+        resetAutoSlide();
+    });
+
+    carousel.addEventListener('pointerleave', () => {
+        if (isSwiping) {
+            isSwiping = false;
+            carousel.style.cursor = 'grab';
+            resetAutoSlide();
+        }
+    });
+
+    // Swipe functionality for touch events
+    carousel.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isSwiping = true;
+        clearInterval(autoSlideInterval);
+    });
+
+    carousel.addEventListener('touchmove', (e) => {
+        if (!isSwiping) return;
+        e.preventDefault(); // Prevent scrolling during swipe
+    });
+
+    carousel.addEventListener('touchend', (e) => {
+        if (!isSwiping) return;
+        isSwiping = false;
+        const endX = e.changedTouches[0].clientX;
+        const deltaX = endX - startX;
+
+        if (Math.abs(deltaX) > swipeThreshold) {
+            if (deltaX > 0) {
+                showSlide(currentSlide - 1); // Swipe right, go to previous slide
+            } else {
+                showSlide(currentSlide + 1); // Swipe left, go to next slide
+            }
+        }
+        resetAutoSlide();
+    });
+
     resetAutoSlide();
 
     carousel.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
     carousel.addEventListener('mouseleave', resetAutoSlide);
 }
-

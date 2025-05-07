@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upnext - Sign Up</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        background: rgba(17, 24, 39, 1);
+        background: linear-gradient(
+          180deg,
+          rgba(17, 24, 39, 1) 0%,
+          rgb(31, 51, 73) 100%
+        );
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .signup-container {
+        background-color: var(--surface);
+        border-radius: var(--radius-lg);
+        padding: var(--space-6);
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--border);
+        max-width: 400px;
+        width: 100%;
+      }
+      .signup-header {
+        text-align: center;
+        margin-bottom: var(--space-5);
+      }
+      .signup-header img {
+        height: 40px;
+        width: auto;
+        margin-bottom: var(--space-4);
+      }
+      .signup-header h1 {
+        font-size: 1.3rem;
+        color: var(--text-dark);
+      }
+      .form-group {
+        margin-bottom: var(--space-4);
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: var(--space-2);
+        font-weight: 500;
+        color: var(--text-medium);
+      }
+      .form-group .input-icon {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .form-group .input-icon i {
+        position: absolute;
+        left: var(--space-3);
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-light);
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: var(--space-3);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        color: var(--text-dark);
+        background-color: var(--surface);
+        transition: border-color var(--transition-fast),
+          box-shadow var(--transition-fast);
+      }
+      .form-group input {
+        padding-left: var(--space-7);
+      }
+      .form-group select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right var(--space-3) center;
+        background-size: 1rem;
+      }
+      .signup-button {
+        width: 100%;
+        padding: var(--space-3) var(--space-5);
+        font-size: 1rem;
+      }
+      .signup-footer {
+        text-align: center;
+        margin-top: var(--space-4);
+      }
+      .signup-footer a {
+        color: var(--primary);
+        font-weight: 500;
+      }
+      .signup-footer a:hover {
+        color: var(--primary-dark);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="signup-container">
+      <div class="signup-header">
+        <img src="/logo.png" alt="Upnext Logo" />
+        <h1>Welcome!</h1>
+      </div>
+      <form id="signup-form">
+        <div class="form-group">
+          <label for="full-name">Full Name</label>
+          <div class="input-icon">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              id="full-name"
+              name="full-name"
+              placeholder="Enter your full name"
+              required
+              aria-label="Full Name"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="class">Class</label>
+          <select id="class" name="class" required aria-label="Class">
+            <option value="" disabled selected>Select your class</option>
+            <option value="1">Class 1</option>
+            <option value="2">Class 2</option>
+            <option value="3">Class 3</option>
+            <option value="4">Class 4</option>
+            <option value="5">Class 5</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="school">School</label>
+          <select id="school" name="school" required aria-label="School">
+            <option value="" disabled selected>Select your school</option>
+            <option value="St. Xavier's Collegiate School">St. Xavier's Collegiate School</option>
+            <option value="Loreto House, Kolkata">Loreto House, Kolkata</option>
+            <option value="La Martiniere for Boys">La Martiniere for Boys</option>
+            <option value="La Martiniere for Girls">La Martiniere for Girls</option>
+            <option value="Modern High School for Girls">Modern High School for Girls</option>
+            <option value="Don Bosco School, Park Circus">Don Bosco School, Park Circus</option>
+            <option value="St. James' School">St. James' School</option>
+            <option value="The Heritage School, Kolkata">The Heritage School, Kolkata</option>
+            <option value="Sri Sri Academy">Sri Sri Academy</option>
+            <option value="G.D. Birla Centre for Education">G.D. Birla Centre for Education</option>
+            <option value="Calcutta Boys' School">Calcutta Boys' School</option>
+            <option value="Mahadevi Birla Shishu Vihar">Mahadevi Birla Shishu Vihar</option>
+            <option value="National Gems Higher Secondary School">National Gems Higher Secondary School</option>
+            <option value="South City International School">South City International School</option>
+            <option value="Adamas International School">Adamas International School</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-icon">
+            <i class="fas fa-envelope"></i>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              aria-label="Email"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-icon">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+              aria-label="Password"
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary signup-button">
+          Sign Up
+        </button>
+      </form>
+      <div class="signup-footer">
+        <p>
+          Already have an account? <a href="/login.html">Log In</a>
+        </p>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('signup-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fullName = document.getElementById('full-name').value;
+        const classValue = document.getElementById('class').value;
+        const school = document.getElementById('school').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Create user data object
+        const userData = {
+          fullName,
+          class: classValue,
+          school,
+          email,
+          password
+        };
+
+        // Convert to JSON
+        const jsonData = JSON.stringify(userData, null, 2);
+
+        // Create a downloadable JSON file
+        const blob = new Blob([jsonData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'user.json';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        console.log('User data saved to user.json:', userData);
+
+        // Redirect to profile page
+        window.location.href = '/profile.html';
+      });
+    </script>
+  </body>
+</html>

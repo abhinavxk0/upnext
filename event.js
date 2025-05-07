@@ -48,7 +48,7 @@ function renderEventDetails() {
                 </div>
                 <div class="event-meta-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <a href="https://maps.google.com/?q=${encodeURIComponent(event.location)}" target="_blank" aria-label="View ${event.location} on map">${event.location}</a>
+                    ${event.location}
                 </div>
             </div>
             
@@ -69,6 +69,9 @@ function renderEventDetails() {
                 <button class="btn btn-primary" id="add-to-calendar" aria-label="Add ${event.title} to calendar">Add to Calendar</button>
                 <div class="notify-badge ${appState.userPreferences.savedEvents.includes(event.id) ? 'active' : ''}" id="notify-btn" title="Get notified" role="button" aria-label="Toggle notification for ${event.title}">
                     <i class="fas fa-bell"></i>
+                </div>
+                <div class="save-badge ${appState.userPreferences.savedEvents.includes(event.id) ? 'active' : ''}" id="save-btn" title="Save event" role="button" aria-label="Toggle save for ${event.title}">
+                    <i class="fas fa-bookmark"></i>
                 </div>
             </div>
             
@@ -104,6 +107,11 @@ function renderEventDetails() {
     document.getElementById('notify-btn').addEventListener('click', () => {
         const isActive = toggleEventNotification(event.id);
         document.getElementById('notify-btn').classList.toggle('active', isActive);
+    });
+
+    document.getElementById('save-btn').addEventListener('click', () => {
+        const isActive = toggleSaveEvent(event.id);
+        document.getElementById('save-btn').classList.toggle('active', isActive);
     });
 
     document.querySelectorAll('.related-events .btn').forEach(btn => {
