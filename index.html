@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upnext - Stay In Sync With Your School</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Desktop sidebar navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Upnext</h1>
+            <button id="sidebar-toggle" aria-label="Toggle sidebar">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item active" data-route="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="events.html" class="nav-item" data-route="events">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Events</span>
+            </a>
+            <a href="profile.html" class="nav-item" data-route="profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Mobile bottom navigation -->
+    <nav class="bottom-nav" id="bottom-nav">
+        <a href="events.html" class="nav-item" data-route="events">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Events</span>
+        </a>
+        <a href="index.html" class="nav-item active" data-route="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="profile.html" class="nav-item" data-route="profile">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="logo-container">
+            <img src="hackathon.png" alt="UpNextLogo" class="upnextlogo">
+        </div>
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="home-search" placeholder="Search events..." aria-label="Search events">
+        </div>
+    </div>
+    <div class="home-card-container">
+        <h2 class="section-title">Featured Events</h2>
+        <div class="carousel">
+            <div class="carousel-inner" id="featured-carousel">
+                <!-- Populated by home.js -->
+            </div>
+            <div class="carousel-dots" id="carousel-dots">
+                <!-- Populated by home.js -->
+            </div>
+        </div>
+        
+        <h2 class="section-title">Quick Filters</h2>
+        <div class="quick-filters">
+            <button class="filter-pill" data-category="Sports" aria-label="Filter by Sports">Sports</button>
+            <button class="filter-pill" data-category="Music" aria-label="Filter by Music">Music</button>
+            <button class="filter-pill" data-category="Arts" aria-label="Filter by Arts">Arts</button>
+            <button class="filter-pill" data-category="Academics" aria-label="Filter by Academics">Academics</button>
+            <button class="filter-pill" data-category="Clubs" aria-label="Filter by Clubs">Clubs</button>
+            <button class="filter-pill" data-category="Social" aria-label="Filter by Social">Social</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="utils.js"></script>
+    <script src="home.js"></script>
+</body>
+</html>
